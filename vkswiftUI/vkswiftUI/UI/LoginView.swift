@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct ContentView: View {
+struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showLogo: Bool = true
@@ -107,7 +107,7 @@ extension UIApplication {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LoginView()
             .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
