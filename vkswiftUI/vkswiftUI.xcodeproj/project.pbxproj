@@ -15,6 +15,8 @@
 		F4F16B462790B46200737949 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B452790B46200737949 /* Friend.swift */; };
 		F4F16B482790B49F00737949 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B472790B49F00737949 /* Photos.swift */; };
 		F4F16B4A2790C2C400737949 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B492790C2C400737949 /* FriendCell.swift */; };
+		F4FEFE032791FBA200B4E72B /* CircleShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE022791FBA200B4E72B /* CircleShadow.swift */; };
+		F4FEFE0527920B8100B4E72B /* FriendPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE0427920B8100B4E72B /* FriendPhotosView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		F4F16B452790B46200737949 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		F4F16B472790B49F00737949 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		F4F16B492790C2C400737949 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		F4FEFE022791FBA200B4E72B /* CircleShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadow.swift; sourceTree = "<group>"; };
+		F4FEFE0427920B8100B4E72B /* FriendPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +91,46 @@
 		F4F16B44279094E200737949 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				F43067A4278AEBCF009116C8 /* vkswiftUIApp.swift */,
-				F43067A6278AEBCF009116C8 /* LoginView.swift */,
+				F4FEFE0727921C1A00B4E72B /* Core */,
+				F4FEFE012791FB7900B4E72B /* Custom Modifiers */,
+				F4FEFE0827921C4900B4E72B /* LoginView */,
+				F4FEFE0627921BDA00B4E72B /* FriendsView */,
+				F4FEFE0427920B8100B4E72B /* FriendPhotosView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F4FEFE012791FB7900B4E72B /* Custom Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				F4FEFE022791FBA200B4E72B /* CircleShadow.swift */,
+			);
+			path = "Custom Modifiers";
+			sourceTree = "<group>";
+		};
+		F4FEFE0627921BDA00B4E72B /* FriendsView */ = {
+			isa = PBXGroup;
+			children = (
 				F4F16B412790939F00737949 /* FriendsView.swift */,
 				F4F16B492790C2C400737949 /* FriendCell.swift */,
 			);
-			path = UI;
+			path = FriendsView;
+			sourceTree = "<group>";
+		};
+		F4FEFE0727921C1A00B4E72B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F43067A4278AEBCF009116C8 /* vkswiftUIApp.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F4FEFE0827921C4900B4E72B /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				F43067A6278AEBCF009116C8 /* LoginView.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,11 +204,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F16B422790939F00737949 /* FriendsView.swift in Sources */,
+				F4FEFE0527920B8100B4E72B /* FriendPhotosView.swift in Sources */,
 				F43067A7278AEBCF009116C8 /* LoginView.swift in Sources */,
 				F4F16B4A2790C2C400737949 /* FriendCell.swift in Sources */,
 				F43067A5278AEBCF009116C8 /* vkswiftUIApp.swift in Sources */,
 				F4F16B462790B46200737949 /* Friend.swift in Sources */,
 				F4F16B482790B49F00737949 /* Photos.swift in Sources */,
+				F4FEFE032791FBA200B4E72B /* CircleShadow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

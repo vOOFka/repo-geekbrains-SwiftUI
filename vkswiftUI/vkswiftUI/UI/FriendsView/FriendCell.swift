@@ -11,19 +11,24 @@ struct FriendCell: View {
     let friend: Friend
     
     var body: some View {
-        HStack{
+        HStack {
             Image(friend.name)
                 .resizable(resizingMode: .stretch)
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 70, height: 70)
                 .cornerRadius(40)
-            VStack(alignment: .leading) {
+                .modifier(CircleShadow(shadowColor: .accentColor,
+                                       shadowRadius: 6,
+                                       shadowOpacity: 0.8))
+            VStack(alignment: .leading, spacing: 5.0) {
                 Text(friend.name)
                 Text(friend.city)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-            }
-        }
+                    .italic()
+            }.padding(.leading, 20.0)
+            Spacer()
+        }.frame(height: 86)
     }
 }
 

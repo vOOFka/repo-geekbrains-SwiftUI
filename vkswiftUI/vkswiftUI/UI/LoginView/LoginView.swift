@@ -90,7 +90,6 @@ struct LoginView: View {
                                    self.showLogo = !isKeyboardOn
                                }
                            }
-
             }.onTapGesture {
                 UIApplication.shared.endEditing()
             }
@@ -105,9 +104,9 @@ extension UIApplication {
    }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-            .previewInterfaceOrientation(.portraitUpsideDown)
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//            .previewInterfaceOrientation(.portraitUpsideDown)
+//    }
+//}
