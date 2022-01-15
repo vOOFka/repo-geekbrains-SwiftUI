@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct ContentView: View {
+struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showLogo: Bool = true
@@ -90,7 +90,6 @@ struct ContentView: View {
                                    self.showLogo = !isKeyboardOn
                                }
                            }
-
             }.onTapGesture {
                 UIApplication.shared.endEditing()
             }
@@ -105,9 +104,9 @@ extension UIApplication {
    }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .previewInterfaceOrientation(.portraitUpsideDown)
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//            .previewInterfaceOrientation(.portraitUpsideDown)
+//    }
+//}
