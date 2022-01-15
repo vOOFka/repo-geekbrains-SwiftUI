@@ -8,15 +8,15 @@
 import UIKit
 
 struct Friend: Identifiable {
-    var id = UUID()
+    let id = UUID()
     let name: String
     let city: String
-    let photos: [Photos]
+    let photos: [Photo]
     
     init(name: String, city: String) {
         self.name = name
         self.city = city
-        self.photos = Photos.getRandomPhotos()
+        self.photos = Photo.getRandomPhotos()
     }
 }
 
@@ -25,11 +25,7 @@ extension Friend {
         let friendsNameArray = ["Иванов Иван","Петров Петр","Ледова Катя","Медведева Мария","Илья Муромец","Алеша Попович","Борисов Борис","Матвей Смирнов","Гендальф Розовый","Брюс Уэйн","Умка Белый","Мария Чернышева","Богдан Яковлев","Артём Виноградов"]
         let friendsCityNameArray = ["Новороссийск", "Ричардсон", "Багума", "Тарма", "Черкесск", "Балаково", "Тобольск" ]
         
-        var friends = [Friend]()
-        for friend in friendsNameArray {
-            friends.append(Friend(name: friend, city: friendsCityNameArray.randomElement()!))
-        }
-        return friends
+        return friendsNameArray.compactMap{ Friend(name: $0, city: friendsCityNameArray.randomElement()!) }
     }()
    
 //    static func lettersFriends() -> [String] {

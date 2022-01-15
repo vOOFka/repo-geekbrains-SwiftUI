@@ -1,30 +1,24 @@
 //
-//  FriendsView.swift
+//  GroupsView.swift
 //  vkswiftUI
 //
-//  Created by Home on 13.01.2022.
+//  Created by Home on 15.01.2022.
 //
 
 import SwiftUI
 
-struct FriendsView: View {
-    private var friends = Friend.allFriends
+struct GroupsView: View {
+    private var groups = UserGroup.userGroups
     
     var body: some View {
         NavigationView {
-            List(friends) { friend in
+            List(groups) { group in
                 ZStack {
-                    FriendCell(friend: friend)
+                    UserGroupCell(group: group)
                     .listRowSeparatorTint(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Color@*/Color(hue: 0.562, saturation: 0.461, brightness: 0.939)/*@END_MENU_TOKEN@*/)
-                    
-                    NavigationLink(destination: PhotoAlbumView()) {
-                        EmptyView()
-                    }
-                    .frame(width: 0, height: 0)
-                    .opacity(1)
                 }
             }
-            .navigationBarTitle(Text("Friends"))
+            .navigationBarTitle(Text("Groups"))
             .environment(\.defaultMinListRowHeight, 86)
             .onAppear() {
                 UITableView.appearance().showsVerticalScrollIndicator = false
@@ -35,8 +29,8 @@ struct FriendsView: View {
     }
 }
 
-struct FriendsView_Previews: PreviewProvider {
+struct GroupsView_Previews: PreviewProvider {
     static var previews: some View {
-        FriendsView()
+        GroupsView()
     }
 }

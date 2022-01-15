@@ -13,10 +13,15 @@
 		F43067AC278AEBD1009116C8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F43067AB278AEBD1009116C8 /* Preview Assets.xcassets */; };
 		F4F16B422790939F00737949 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B412790939F00737949 /* FriendsView.swift */; };
 		F4F16B462790B46200737949 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B452790B46200737949 /* Friend.swift */; };
-		F4F16B482790B49F00737949 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B472790B49F00737949 /* Photos.swift */; };
+		F4F16B482790B49F00737949 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B472790B49F00737949 /* Photo.swift */; };
 		F4F16B4A2790C2C400737949 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B492790C2C400737949 /* FriendCell.swift */; };
 		F4FEFE032791FBA200B4E72B /* CircleShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE022791FBA200B4E72B /* CircleShadow.swift */; };
-		F4FEFE0527920B8100B4E72B /* FriendPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE0427920B8100B4E72B /* FriendPhotosView.swift */; };
+		F4FEFE0527920B8100B4E72B /* PhotoAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE0427920B8100B4E72B /* PhotoAlbumView.swift */; };
+		F4FEFE0C27932DE700B4E72B /* UserGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE0B27932DE700B4E72B /* UserGroupCell.swift */; };
+		F4FEFE0E27932EDF00B4E72B /* UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE0D27932EDF00B4E72B /* UserGroup.swift */; };
+		F4FEFE102793381600B4E72B /* RectangleShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE0F2793381600B4E72B /* RectangleShadow.swift */; };
+		F4FEFE1327933F6600B4E72B /* UserGroupNameText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE1227933F6600B4E72B /* UserGroupNameText.swift */; };
+		F4FEFE152793409400B4E72B /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE142793409400B4E72B /* GroupsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,10 +32,15 @@
 		F43067AB278AEBD1009116C8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F4F16B412790939F00737949 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		F4F16B452790B46200737949 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
-		F4F16B472790B49F00737949 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		F4F16B472790B49F00737949 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		F4F16B492790C2C400737949 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		F4FEFE022791FBA200B4E72B /* CircleShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadow.swift; sourceTree = "<group>"; };
-		F4FEFE0427920B8100B4E72B /* FriendPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosView.swift; sourceTree = "<group>"; };
+		F4FEFE0427920B8100B4E72B /* PhotoAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumView.swift; sourceTree = "<group>"; };
+		F4FEFE0B27932DE700B4E72B /* UserGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupCell.swift; sourceTree = "<group>"; };
+		F4FEFE0D27932EDF00B4E72B /* UserGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroup.swift; sourceTree = "<group>"; };
+		F4FEFE0F2793381600B4E72B /* RectangleShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleShadow.swift; sourceTree = "<group>"; };
+		F4FEFE1227933F6600B4E72B /* UserGroupNameText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupNameText.swift; sourceTree = "<group>"; };
+		F4FEFE142793409400B4E72B /* GroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				F4F16B452790B46200737949 /* Friend.swift */,
-				F4F16B472790B49F00737949 /* Photos.swift */,
+				F4F16B472790B49F00737949 /* Photo.swift */,
+				F4FEFE0D27932EDF00B4E72B /* UserGroup.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -93,9 +104,11 @@
 			children = (
 				F4FEFE0727921C1A00B4E72B /* Core */,
 				F4FEFE012791FB7900B4E72B /* Custom Modifiers */,
+				F4FEFE1127933EF300B4E72B /* Custom Builders */,
+				F4FEFE0A27932D5F00B4E72B /* PhotoAlbumView */,
 				F4FEFE0827921C4900B4E72B /* LoginView */,
 				F4FEFE0627921BDA00B4E72B /* FriendsView */,
-				F4FEFE0427920B8100B4E72B /* FriendPhotosView.swift */,
+				F4FEFE0927932D2A00B4E72B /* GroupsView */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -104,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				F4FEFE022791FBA200B4E72B /* CircleShadow.swift */,
+				F4FEFE0F2793381600B4E72B /* RectangleShadow.swift */,
 			);
 			path = "Custom Modifiers";
 			sourceTree = "<group>";
@@ -131,6 +145,31 @@
 				F43067A6278AEBCF009116C8 /* LoginView.swift */,
 			);
 			path = LoginView;
+			sourceTree = "<group>";
+		};
+		F4FEFE0927932D2A00B4E72B /* GroupsView */ = {
+			isa = PBXGroup;
+			children = (
+				F4FEFE142793409400B4E72B /* GroupsView.swift */,
+				F4FEFE0B27932DE700B4E72B /* UserGroupCell.swift */,
+			);
+			path = GroupsView;
+			sourceTree = "<group>";
+		};
+		F4FEFE0A27932D5F00B4E72B /* PhotoAlbumView */ = {
+			isa = PBXGroup;
+			children = (
+				F4FEFE0427920B8100B4E72B /* PhotoAlbumView.swift */,
+			);
+			path = PhotoAlbumView;
+			sourceTree = "<group>";
+		};
+		F4FEFE1127933EF300B4E72B /* Custom Builders */ = {
+			isa = PBXGroup;
+			children = (
+				F4FEFE1227933F6600B4E72B /* UserGroupNameText.swift */,
+			);
+			path = "Custom Builders";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,14 +242,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FEFE0C27932DE700B4E72B /* UserGroupCell.swift in Sources */,
+				F4FEFE152793409400B4E72B /* GroupsView.swift in Sources */,
 				F4F16B422790939F00737949 /* FriendsView.swift in Sources */,
-				F4FEFE0527920B8100B4E72B /* FriendPhotosView.swift in Sources */,
+				F4FEFE0527920B8100B4E72B /* PhotoAlbumView.swift in Sources */,
 				F43067A7278AEBCF009116C8 /* LoginView.swift in Sources */,
 				F4F16B4A2790C2C400737949 /* FriendCell.swift in Sources */,
 				F43067A5278AEBCF009116C8 /* vkswiftUIApp.swift in Sources */,
+				F4FEFE0E27932EDF00B4E72B /* UserGroup.swift in Sources */,
+				F4FEFE1327933F6600B4E72B /* UserGroupNameText.swift in Sources */,
 				F4F16B462790B46200737949 /* Friend.swift in Sources */,
-				F4F16B482790B49F00737949 /* Photos.swift in Sources */,
+				F4F16B482790B49F00737949 /* Photo.swift in Sources */,
 				F4FEFE032791FBA200B4E72B /* CircleShadow.swift in Sources */,
+				F4FEFE102793381600B4E72B /* RectangleShadow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
