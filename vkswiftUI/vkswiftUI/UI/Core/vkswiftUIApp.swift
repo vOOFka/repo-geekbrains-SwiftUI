@@ -11,8 +11,7 @@ import SwiftUI
 struct vkswiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            //LoginView()
-            FriendsView()
+            LoginContainerView()
         }
     }
 }
