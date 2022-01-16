@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F400BB11279489C9003134A2 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F400BB10279489C9003134A2 /* SwiftUIView.swift */; };
 		F400BB132794946C003134A2 /* HiddenNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F400BB122794946C003134A2 /* HiddenNavigationBar.swift */; };
 		F43067A5278AEBCF009116C8 /* vkswiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43067A4278AEBCF009116C8 /* vkswiftUIApp.swift */; };
 		F43067A7278AEBCF009116C8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43067A6278AEBCF009116C8 /* LoginView.swift */; };
@@ -30,7 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F400BB10279489C9003134A2 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		F400BB122794946C003134A2 /* HiddenNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenNavigationBar.swift; sourceTree = "<group>"; };
 		F43067A1278AEBCF009116C8 /* vkswiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vkswiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43067A4278AEBCF009116C8 /* vkswiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vkswiftUIApp.swift; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				F4FEFE0427920B8100B4E72B /* PhotoAlbumView.swift */,
-				F400BB10279489C9003134A2 /* SwiftUIView.swift */,
 			);
 			path = PhotoAlbumView;
 			sourceTree = "<group>";
@@ -271,7 +268,6 @@
 			files = (
 				F4FEFE0C27932DE700B4E72B /* UserGroupCell.swift in Sources */,
 				F4FEFE192793505A00B4E72B /* MainView.swift in Sources */,
-				F400BB11279489C9003134A2 /* SwiftUIView.swift in Sources */,
 				F4FEFE152793409400B4E72B /* GroupsView.swift in Sources */,
 				F4F16B422790939F00737949 /* FriendsView.swift in Sources */,
 				F4FEFE0527920B8100B4E72B /* PhotoAlbumView.swift in Sources */,
