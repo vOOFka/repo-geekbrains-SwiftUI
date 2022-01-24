@@ -6,35 +6,36 @@
 //
 
 import SwiftUI
+import ASCollectionView
 
 struct PhotoAlbumView: View {
-    var photos: [Photo]
-    let columns = [
-        GridItem(.adaptive(minimum: 150))
-    ]
+    @ObservedObject var viewModel: PhotoAlbumViewModel
+    
+    init(viewModel: PhotoAlbumViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(photos, id: \.self) { item in
-                    Image(item.name)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 150, height: 150)
-                        .clipShape(Rectangle())
-                        .cornerRadius(10)
-                }
-            }
-            .padding(.horizontal)
+        ASCollectionView(data: viewModel.photosItems)
+        { photos, _ in
+            return PhotoView(photo: photos)
+        }.layout {
+            .grid(
+                layoutMode: .fixedNumberOfColumns(2),
+                itemSpacing: 0,
+                lineSpacing: 16
+            )
+        }.onAppear {
+            viewModel.fetchPhotos()
         }
-        .navigationBarTitle(Text("Photo album"))
+        .navigationBarTitle(viewModel.currentFriend.fullName)
     }
 }
 
-struct PhotoAlbumView_Previews: PreviewProvider {
-    static var previews: some View {
-        let photo = Photo.getRandomPhotos()
-        
-        PhotoAlbumView(photos: photo)
-    }
-}
+//struct PhotoAlbumView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let photo = Photo.getRandomPhotos()
+//
+//        PhotoAlbumView(photos: photo)
+//    }
+//}

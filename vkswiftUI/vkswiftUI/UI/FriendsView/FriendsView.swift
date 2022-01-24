@@ -8,20 +8,27 @@
 import SwiftUI
 
 struct FriendsView: View {
-    private var friends = Friend.allFriends
-    private var lettersCategoryFriends = Friend.lettersCategoryFriends
+    @ObservedObject var viewModel: FriendsViewModel
+    
+    init(viewModel: FriendsViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView {
-            List(lettersCategoryFriends, id: \.self) { letter in
-                Section(header: FriendsSectionHeader { Text(letter) }) {
-                    ForEach(friends) { friend in
-                        if friend.category == letter {
+            List(viewModel.friendsCategory) { friendsCategory in
+                Section(header: FriendsSectionHeader { Text(friendsCategory.category) }) {
+                    ForEach(friendsCategory.friends) { friend in
+                        if friend.category == friendsCategory.category {
                             ZStack {
                                 FriendCell(friend: friend)
                                     .listRowSeparatorTint(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Color@*/Color(hue: 0.562, saturation: 0.461, brightness: 0.939)/*@END_MENU_TOKEN@*/)
                                     .listRowInsets(EdgeInsets())
-                                NavigationLink(destination: PhotoAlbumView(photos: friend.photos)) {
+                                NavigationLink(destination:
+                                                PhotoAlbumView(viewModel:
+                                                                PhotoAlbumViewModel(friend: friend,
+                                                                                    networkService: NetworkServiceImplimentation())
+                                                              )) {
                                     EmptyView()
                                 }
                                 .frame(width: 0, height: 0)
@@ -34,6 +41,7 @@ struct FriendsView: View {
             .navigationBarTitle(Text("Friends"))
             .environment(\.defaultMinListRowHeight, 86)
             .onAppear() {
+                viewModel.fetchFriends()
                 UITableView.appearance().showsVerticalScrollIndicator = false
                 UITableView.appearance().separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
             }
@@ -42,8 +50,8 @@ struct FriendsView: View {
     }
 }
 
-struct FriendsView_Previews: PreviewProvider {
-    static var previews: some View {
-        FriendsView()
-    }
-}
+//struct FriendsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FriendsView()
+//    }
+//}
