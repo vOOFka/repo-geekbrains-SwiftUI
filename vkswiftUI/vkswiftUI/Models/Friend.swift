@@ -12,6 +12,7 @@ struct Friend: Identifiable {
     let name: String
     let city: String
     let photos: [Photo]
+    var category: String { return String(name.first ?? " ") }
     
     init(name: String, city: String) {
         self.name = name
@@ -27,10 +28,14 @@ extension Friend {
         
         return friendsNameArray.compactMap{ Friend(name: $0, city: friendsCityNameArray.randomElement()!) }
     }()
-   
-//    static func lettersFriends() -> [String] {
-//        var array = friendsNameArray.map({ String($0.first!) })
-//        array = Array(Set(array))
-//        return array.sorted()
-//    }
+    
+    static let lettersCategoryFriends: [String] = {
+        var array = allFriends.map { $0.category }
+        array = Array(Set(array))
+        return array.sorted()
+    }()
+    
+    static let allFriendsWithCategory: [String : [Friend]] = {
+        return Dictionary(grouping: allFriends) { $0.category }
+    }()
 }

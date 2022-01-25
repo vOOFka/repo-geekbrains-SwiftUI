@@ -16,7 +16,7 @@ struct FriendCell: View {
                 .resizable(resizingMode: .stretch)
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 70, height: 70)
-                .cornerRadius(40)
+                .clipShape(Circle())
                 .modifier(CircleShadow(shadowColor: .accentColor,
                                        shadowRadius: 6,
                                        shadowOpacity: 0.8))

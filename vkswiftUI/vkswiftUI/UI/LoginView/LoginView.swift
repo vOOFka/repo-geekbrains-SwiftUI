@@ -8,10 +8,29 @@
 import SwiftUI
 import Combine
 
+// Correct login = 1, password = 1
+
+struct LoginContainerView: View {
+   @State private var shouldShowMainView: Bool = false
+  
+   var body: some View {
+       NavigationView {
+           HStack {
+               LoginView(isUserLoggedIn: $shouldShowMainView)
+               NavigationLink(destination: MainView(), isActive: $shouldShowMainView) {
+                   EmptyView()
+               }
+           }
+       }
+   }
+}
+
 struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showLogo: Bool = true
+    @State private var showIncorrentCredentialsWarning = false
+    @Binding var isUserLoggedIn: Bool
     
     private let keyboardIsOnPublisher = Publishers.Merge(
            NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
@@ -72,7 +91,7 @@ struct LoginView: View {
                     .padding(.top, 30.0)
                     Spacer()
                     Button(action: {
-                        print("Login ...")
+                        verifyLoginData()
                     }, label: {
                         Text("Enter")
                             .padding(5.0)
@@ -92,10 +111,19 @@ struct LoginView: View {
                            }
             }.onTapGesture {
                 UIApplication.shared.endEditing()
-            }
-
+            }.alert(isPresented: $showIncorrentCredentialsWarning, content: { Alert(title: Text("Error"), message: Text("Incorrent Login/Password was entered"))
+            })
         }
     }
+    
+    private func verifyLoginData() {
+         if username == "1" && password == "1" {
+             isUserLoggedIn = true
+         } else {
+             showIncorrentCredentialsWarning = true
+         }
+         password = ""
+     }
 }
 
 extension UIApplication {
