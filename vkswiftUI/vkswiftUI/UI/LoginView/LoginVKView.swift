@@ -15,9 +15,9 @@ struct LoginVKContainerView: View {
         NavigationView {
             HStack {
                 LoginVKView(navigationDelegate: navigationDelegate)
-                NavigationLink(destination: MainView(), isActive: $navigationDelegate.isAuth) {
-                    EmptyView()
-                }
+                .fullScreenCover(isPresented: $navigationDelegate.isAuth, onDismiss: nil, content: {
+                        MainView()                        
+                    })
             }
         }
     }
