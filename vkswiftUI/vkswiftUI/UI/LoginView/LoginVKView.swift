@@ -44,7 +44,7 @@ struct LoginVKView: UIViewRepresentable {
         components.host = "oauth.vk.com"
         components.path = "/authorize"
         components.queryItems = [
-            URLQueryItem(name: "client_id", value: "6704883"), //7937212 my app ban?  //6704883
+            URLQueryItem(name: "client_id", value: "7937212"), //7937212 my app ban?  //6704883
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "scope", value: "friends,photos,groups,wall"),

@@ -8,6 +8,7 @@
 import RealmSwift
 
 protocol RealmService {
+    func get<T: Object>(_ type: T.Type, configuration: Realm.Configuration) throws -> [T]
     func get<T: Object, KeyType> (_ type: T.Type, primaryKey: KeyType) throws -> T?
     func get<T: Object> (_ type: T.Type) throws -> Results<T>
     func update<T: Object>(_ items: [T]) throws -> Realm
@@ -18,6 +19,15 @@ protocol RealmService {
 }
 
 class RealmServiceImplimentation: RealmService {
+    func get<T: Object>(
+        _ type: T.Type,
+        configuration: Realm.Configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+    ) throws -> Array<T> {
+        print(configuration.fileURL ?? "")
+        let realm = try Realm(configuration: configuration)
+        return realm.objects(type).map { $0.detached() }
+    }
+    
     //Update or save some objects in Realm DB
     func update<T: Object>(_ items: [T]) throws -> Realm {
         let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)

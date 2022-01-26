@@ -14,15 +14,21 @@ protocol DetachableObject: AnyObject {
 }
 
 extension Object: DetachableObject {
+    
     func detached() -> Self {
         let detached = type(of: self).init()
         for property in objectSchema.properties {
-            guard let value = value(forKey: property.name) else {
-                continue
-            }
-            if let detachable = value as? DetachableObject {
-                detached.setValue(detachable.detached(), forKey: property.name)
-            } else { // Then it is a primitive
+            guard let value = value(forKey: property.name) else { continue }
+            
+            if property.isArray == true {
+                //Realm List property support
+                let detachable = value as? DetachableObject
+                detached.setValue(detachable?.detached(), forKey: property.name)
+            } else if property.type == .object {
+                //Realm Object property support
+                let detachable = value as? DetachableObject
+                detached.setValue(detachable?.detached(), forKey: property.name)
+            } else {
                 detached.setValue(value, forKey: property.name)
             }
         }
@@ -33,14 +39,32 @@ extension Object: DetachableObject {
 extension List: DetachableObject {
     func detached() -> List<Element> {
         let result = List<Element>()
+        
         forEach {
-            if let detachableObject = $0 as? DetachableObject,
-                let element = detachableObject.detached() as? Element {
-                result.append(element)
-            } else { // Then it is a primitive
-                result.append($0)
+            if let detachable = $0 as? DetachableObject {
+                let detached = detachable.detached() as! Element
+                result.append(detached)
+            } else {
+                result.append($0) //Primtives are pass by value; don't need to recreate
             }
         }
+        
         return result
+    }
+    
+    func toArray() -> [Element] {
+        return Array(self.detached())
+    }
+}
+
+extension Results {
+    func toArray() -> [Element] {
+        let result = List<Element>()
+        
+        forEach {
+            result.append($0)
+        }
+        
+        return Array(result.detached())
     }
 }

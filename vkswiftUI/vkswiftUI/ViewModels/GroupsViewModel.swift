@@ -22,7 +22,7 @@ class GroupsViewModel: ObservableObject {
     
     var error: Error?
     
-    var fromRealmUserGroups: [UserGroup] { userGroups?.toArray(ofType: UserGroup.self) ?? [] }
+    var fromRealmUserGroups: [UserGroup] { userGroups?.toArray().map{ UserGroup($0) } ?? [] }
     
     init(networkService: NetworkService, realmService: RealmService) {
         self.networkService = networkService
@@ -58,17 +58,5 @@ class GroupsViewModel: ObservableObject {
         notificationToken = userGroups?.observe { [weak self] _ in
             self?.objectWillChange.send()
         }
-    }
-}
-
-extension Results {
-    func toArray<T>(ofType: T.Type) -> [T] {
-        var array = [T]()
-        for i in 0 ..< count {
-            if let result = self[i] as? T {
-                array.append(result)
-            }
-        }
-        return array
     }
 }

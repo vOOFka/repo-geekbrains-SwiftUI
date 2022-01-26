@@ -35,6 +35,12 @@ class UserGroup: Identifiable, Decodable {
         case urlPhoto = "photo_100"
     }
     init() {}
+    init(_ realmModel: RealmGroup) {
+        self.id = realmModel.id
+        self.name = realmModel.name
+        self.isMember = realmModel.isMember
+        self.urlPhoto = realmModel.urlAvatar ?? ""
+    }
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
@@ -43,24 +49,3 @@ class UserGroup: Identifiable, Decodable {
         self.urlPhoto = try container.decode(String.self, forKey: .urlPhoto)
     }
 }
-
-//import SwiftUI
-//
-//struct UserGroup: Identifiable {
-//    let id = UUID()
-//    let name: String
-//    let image: UIImage?
-//
-//    init(name: String) {
-//        self.name = name
-//        self.image = UIImage(named: name)
-//    }
-//}
-//
-//extension UserGroup {
-//    private static let userGroupsNames = ["Автолюбители", "Гринпис", "Greenpeace", "Очень-очень длинное название группы с фантастическими видео"]
-//    private static let aveliableGroupsNames = ["Библиофилы", "Программисты IOS", "Готовим вкусно!", "Автолюбители", "Гринпис", "Greenpeace", "Очень-очень длинное название группы с фантастическими видео"]
-//
-//    static let userGroups: [UserGroup] = userGroupsNames.compactMap{ UserGroup(name: $0) }
-//    static let aveliableGroups: [UserGroup] = aveliableGroupsNames.compactMap{ UserGroup(name: $0) }
-//}
