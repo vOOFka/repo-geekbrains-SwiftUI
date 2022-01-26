@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct UserGroupCell: View {
     let group: UserGroup
     
     var body: some View {
         HStack {
-            Image(group.name)
+            KFImage(URL(string: group.urlPhoto))
                 .resizable(resizingMode: .stretch)
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 70, height: 70)
@@ -31,11 +32,11 @@ struct UserGroupCell: View {
     }
 }
 
-struct GroupCell_Previews: PreviewProvider {
-    static var previews: some View {
-        let group = UserGroup(name: "Автолюбители")
-        let group2 = UserGroup(name: "Очень-очень длинное название группы с фантастическими видео")
-        UserGroupCell(group: group)
-        UserGroupCell(group: group2)
-    }
-}
+//struct GroupCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let group = UserGroup(name: "Автолюбители")
+//        let group2 = UserGroup(name: "Очень-очень длинное название группы с фантастическими видео")
+//        UserGroupCell(group: group)
+//        UserGroupCell(group: group2)
+//    }
+//}

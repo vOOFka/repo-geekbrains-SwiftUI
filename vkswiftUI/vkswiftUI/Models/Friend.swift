@@ -7,35 +7,82 @@
 
 import UIKit
 
-struct Friend: Identifiable {
+class FriendsCategory: Identifiable {
     let id = UUID()
-    let name: String
-    let city: String
-    let photos: [Photo]
-    var category: String { return String(name.first ?? " ") }
+    let category: String
+    var friends: [Friend]
     
-    init(name: String, city: String) {
-        self.name = name
-        self.city = city
-        self.photos = Photo.getRandomPhotos()
+    init(category: String ,array friends: [Friend]) {
+        self.category = category
+        self.friends = friends
     }
 }
 
-extension Friend {
-    static let allFriends: [Friend] = {
-        let friendsNameArray = ["Иванов Иван","Петров Петр","Ледова Катя","Медведева Мария","Илья Муромец","Алеша Попович","Борисов Борис","Матвей Смирнов","Гендальф Розовый","Брюс Уэйн","Умка Белый","Мария Чернышева","Богдан Яковлев","Артём Виноградов"]
-        let friendsCityNameArray = ["Новороссийск", "Ричардсон", "Багума", "Тарма", "Черкесск", "Балаково", "Тобольск" ]
-        
-        return friendsNameArray.compactMap{ Friend(name: $0, city: friendsCityNameArray.randomElement()!) }
-    }()
+class Friends: Decodable {
+    let items: [Friend]
     
-    static let lettersCategoryFriends: [String] = {
-        var array = allFriends.map { $0.category }
-        array = Array(Set(array))
-        return array.sorted()
-    }()
+    enum CodingKeys: String, CodingKey {
+        case response
+    }
     
-    static let allFriendsWithCategory: [String : [Friend]] = {
-        return Dictionary(grouping: allFriends) { $0.category }
-    }()
+    enum ItemsKeys: String, CodingKey {
+        case items
+    }
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let itemsContainer = try container.nestedContainer(keyedBy: ItemsKeys.self, forKey: .response)
+        self.items = try itemsContainer.decode([Friend].self, forKey: .items)
+    }
+}
+
+class Friend: Identifiable, Decodable {
+    var id: Int = 0
+    var fullName: String {
+        var fio = [String]()
+        fio.append(firstName)
+        fio.append(nickName ?? "")
+        fio.append(lastName)
+        return fio.filter({ !$0.isEmpty }).joined(separator: " ")
+    }
+    var category: String { return String(fullName.first ?? " ") }
+    var firstName: String = ""
+    var lastName: String = ""
+    var nickName: String?
+    var deactivated: String?
+    var isClosed: Bool?
+    var canAccessClosed: Bool?
+    var cityName: String?
+    var urlAvatar: String?
+    var imageAvatar: UIImage?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case nickName = "nickname"
+        case deactivated
+        case isClosed = "is_closed"
+        case canAccessClosed = "can_access_closed"
+        case cityName = "city"
+        case urlAvatar = "photo_100" //"photo_200_orig"
+    }
+    
+    enum CityKeys: String, CodingKey {
+        case city = "title"
+    }
+    init() {}
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.firstName = try container.decode(String.self, forKey: .firstName)
+        self.lastName = try container.decode(String.self, forKey: .lastName)
+        self.nickName = try? container.decode(String.self, forKey: .nickName)
+        self.deactivated = try? container.decode(String.self, forKey: .deactivated)
+        self.isClosed = try? container.decode(Bool.self, forKey: .isClosed)
+        self.canAccessClosed = try? container.decode(Bool.self, forKey: .canAccessClosed)
+        self.urlAvatar = try? container.decode(String.self, forKey: .urlAvatar)
+        //City
+        let cityContainer = try? container.nestedContainer(keyedBy: CityKeys.self, forKey: .cityName)
+        self.cityName = try? cityContainer?.decode(String.self, forKey: .city)
+    }
 }

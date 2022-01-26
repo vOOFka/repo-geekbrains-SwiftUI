@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct MainView: View {
+    let networkService = NetworkServiceImplimentation()
+    let realmService = RealmServiceImplimentation()
     
     var body: some View {
         TabView {
-            FriendsView()
+            FriendsView(viewModel: FriendsViewModel(networkService: networkService))
                 .tabItem {
                     Label("Friends", systemImage: "person.2.fill")
                 }
-            
-            GroupsView()
+            GroupsView(viewModel: GroupsViewModel(networkService: networkService, realmService: realmService))
                 .tabItem {
                     Label("Groups", systemImage: "person.3.fill")
                 }
@@ -32,8 +33,8 @@ struct MainView: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
-}
+//struct MainView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainView()
+//    }
+//}
