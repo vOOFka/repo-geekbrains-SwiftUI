@@ -8,18 +8,24 @@
 import UIKit
 import SwiftUI
 
-@propertyWrapper struct CodingStyle<Value: StringProtocol> {
+@propertyWrapper struct CodingStyle<Value: StringProtocol>: DynamicProperty {
     //camelCase    snake_case    kebab-case
     enum TypeStyle {
         case camelCase, snakeCase, kebabCase
     }
     
-    private var value: Value
+    @State private var value: Value
     private var typeStyle: TypeStyle
-    public var projectedValue: Self { return self }
+    
+    public var projectedValue: Binding<Value> {
+        Binding (
+            get: { wrappedValue },
+            set: { wrappedValue = $0 }
+        )    
+    }
     
     init(wrappedValue: Value, typeStyle: TypeStyle) {
-        self.value = wrappedValue
+        _value = State(wrappedValue: wrappedValue)
         self.typeStyle = typeStyle
     }
     
@@ -34,7 +40,7 @@ import SwiftUI
         }
     }
     
-    private mutating func set(_ newValue: Value) {
+    private nonmutating func set(_ newValue: Value) {
         switch typeStyle {
         case .camelCase:
             value = Value(stringLiteral: newValue.toCamelCase())
@@ -49,7 +55,7 @@ import SwiftUI
         get {
             get()
         }
-        set {
+        nonmutating set {
             set(newValue)
         }
     }

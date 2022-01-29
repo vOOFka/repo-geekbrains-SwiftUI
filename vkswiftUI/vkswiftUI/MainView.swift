@@ -30,6 +30,7 @@ struct MainView: View {
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .accentColor(.orange)
     }
 }
 
