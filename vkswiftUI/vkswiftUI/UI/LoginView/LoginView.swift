@@ -26,7 +26,7 @@ struct LoginContainerView: View {
 }
 
 struct LoginView: View {
-    @State private var username: String = ""
+    @CodingStyle(typeStyle: .snakeCase) private var username: String = ""
     @State private var password: String = ""
     @State private var showLogo: Bool = true
     @State private var showIncorrentCredentialsWarning = false
