@@ -32,6 +32,8 @@
 		F4F16B462790B46200737949 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B452790B46200737949 /* Friend.swift */; };
 		F4F16B482790B49F00737949 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B472790B49F00737949 /* Photo.swift */; };
 		F4F16B4A2790C2C400737949 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F16B492790C2C400737949 /* FriendCell.swift */; };
+		F4F525A427A6BA280023A95A /* LikeShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F525A327A6BA280023A95A /* LikeShape.swift */; };
+		F4F525A727A6BAEA0023A95A /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F525A627A6BAEA0023A95A /* LikeView.swift */; };
 		F4FEFE032791FBA200B4E72B /* CircleShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE022791FBA200B4E72B /* CircleShadow.swift */; };
 		F4FEFE0527920B8100B4E72B /* PhotoAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE0427920B8100B4E72B /* PhotoAlbumView.swift */; };
 		F4FEFE0C27932DE700B4E72B /* UserGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FEFE0B27932DE700B4E72B /* UserGroupCell.swift */; };
@@ -65,6 +67,8 @@
 		F4F16B452790B46200737949 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		F4F16B472790B49F00737949 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		F4F16B492790C2C400737949 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		F4F525A327A6BA280023A95A /* LikeShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeShape.swift; sourceTree = "<group>"; };
+		F4F525A627A6BAEA0023A95A /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		F4FEFE022791FBA200B4E72B /* CircleShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShadow.swift; sourceTree = "<group>"; };
 		F4FEFE0427920B8100B4E72B /* PhotoAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumView.swift; sourceTree = "<group>"; };
 		F4FEFE0B27932DE700B4E72B /* UserGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupCell.swift; sourceTree = "<group>"; };
@@ -124,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				F4F16B44279094E200737949 /* UI */,
-				F4FEFE182793505A00B4E72B /* MainView.swift */,
 				F4D48DF0279DFA6E0050B9E1 /* ViewModels */,
 				F4F16B43279094D800737949 /* Models */,
 				F43067A8278AEBD1009116C8 /* Assets.xcassets */,
@@ -170,6 +173,7 @@
 		F4F16B43279094D800737949 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F4F525A327A6BA280023A95A /* LikeShape.swift */,
 				F4F16B452790B46200737949 /* Friend.swift */,
 				F4F16B472790B49F00737949 /* Photo.swift */,
 				F4FEFE0D27932EDF00B4E72B /* UserGroup.swift */,
@@ -180,6 +184,7 @@
 		F4F16B44279094E200737949 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F4FEFE182793505A00B4E72B /* MainView.swift */,
 				F4FEFE0727921C1A00B4E72B /* Core */,
 				F444C22727A1F44F00806208 /* Custom Property Wrappers */,
 				F4FEFE012791FB7900B4E72B /* Custom Modifiers */,
@@ -191,6 +196,14 @@
 				F4FEFE1A2793576C00B4E72B /* Newsfeed */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		F4F525A527A6BA6E0023A95A /* LikeView */ = {
+			isa = PBXGroup;
+			children = (
+				F4F525A627A6BAEA0023A95A /* LikeView.swift */,
+			);
+			path = LikeView;
 			sourceTree = "<group>";
 		};
 		F4FEFE012791FB7900B4E72B /* Custom Modifiers */ = {
@@ -241,6 +254,7 @@
 		F4FEFE0A27932D5F00B4E72B /* PhotoAlbumView */ = {
 			isa = PBXGroup;
 			children = (
+				F4F525A527A6BA6E0023A95A /* LikeView */,
 				F4FEFE0427920B8100B4E72B /* PhotoAlbumView.swift */,
 				F41ED84B279F3D4E003B0CFC /* PhotoView.swift */,
 			);
@@ -350,6 +364,7 @@
 				F444C22927A1F49600806208 /* CodingStyle.swift in Sources */,
 				F4FEFE0C27932DE700B4E72B /* UserGroupCell.swift in Sources */,
 				F4FEFE192793505A00B4E72B /* MainView.swift in Sources */,
+				F4F525A727A6BAEA0023A95A /* LikeView.swift in Sources */,
 				F4FEFE152793409400B4E72B /* GroupsView.swift in Sources */,
 				F4F16B422790939F00737949 /* FriendsView.swift in Sources */,
 				F4FEFE0527920B8100B4E72B /* PhotoAlbumView.swift in Sources */,
@@ -363,6 +378,7 @@
 				F43067A7278AEBCF009116C8 /* LoginView.swift in Sources */,
 				F41ED84E279F4487003B0CFC /* GroupsViewModel.swift in Sources */,
 				F4D48DF2279DFA9A0050B9E1 /* FriendsViewModel.swift in Sources */,
+				F4F525A427A6BA280023A95A /* LikeShape.swift in Sources */,
 				F44E94BB279E04070099C121 /* NetworkService.swift in Sources */,
 				F4F16B4A2790C2C400737949 /* FriendCell.swift in Sources */,
 				F43067A5278AEBCF009116C8 /* vkswiftUIApp.swift in Sources */,

@@ -31,6 +31,7 @@ class Photo: Decodable, Identifiable {
     var date: Int = 0
     var sizes = [sizePhoto]()
     var likes: Int? = 0
+    var userLikes: Bool = false
     var reposts: Int? = 0
     var image: UIImage?
     
@@ -46,6 +47,7 @@ class Photo: Decodable, Identifiable {
     }
     enum LikesKeys: String, CodingKey {
         case likes = "count"
+        case userLikes = "user_likes"
     }
     enum RepostsKeys: String, CodingKey {
         case reposts = "count"
@@ -62,6 +64,10 @@ class Photo: Decodable, Identifiable {
         //Likes
         let likesContainer = try? container.nestedContainer(keyedBy: LikesKeys.self, forKey: .likes)
         self.likes = try likesContainer?.decode(Int.self, forKey: .likes)
+        self.userLikes = try {
+            guard let like = try likesContainer?.decode(Int.self, forKey: .userLikes) else { return false }            
+            return like == 1 ? true : false
+        }()
         //Reposts
         let repostsContainer = try? container.nestedContainer(keyedBy: RepostsKeys.self, forKey: .reposts)
         self.reposts = try repostsContainer?.decode(Int.self, forKey: .reposts)
@@ -85,7 +91,7 @@ enum sizeType: String, Decodable {
 class sizePhoto: Decodable {
     var height: Int = 1
     var width: Int = 1
-    var type = sizeType.small
+    var type = sizeType.max
     var urlPhoto: String = ""
     var image: UIImage?
     var ratio: CGFloat { CGFloat(self.height)/CGFloat(self.width) }

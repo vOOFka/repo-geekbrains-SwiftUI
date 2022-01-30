@@ -22,7 +22,7 @@ struct PhotoAlbumView: View {
         }.layout {
             .grid(
                 layoutMode: .fixedNumberOfColumns(2),
-                itemSpacing: 0,
+                itemSpacing: 8,
                 lineSpacing: 16
             )
         }.onAppear {

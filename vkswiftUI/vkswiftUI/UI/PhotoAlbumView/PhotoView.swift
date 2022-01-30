@@ -10,7 +10,7 @@ import Kingfisher
 
 struct PhotoView: View {
     let currentPhoto: Photo
-    let size = sizeType.mid
+    let size = sizeType.max
     
     
     init(photo: Photo) {
@@ -19,10 +19,20 @@ struct PhotoView: View {
     
     var body: some View {
         return GeometryReader { proxy in
-            VStack {
+            ZStack {
                 let url = currentPhoto.sizes.first(where: { $0.type == size })!.urlPhoto
                 KFImage(URL(string: url))
                     .cancelOnDisappear(true)
+                    .resizable(resizingMode: .stretch)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .cornerRadius(10)
+                    .clipped()
+                
+                LikeView(currentPhoto.userLikes)
+                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottomTrailing)
+                    .padding([.bottom, .trailing], 10)
+                
             }
         }
     }
