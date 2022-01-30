@@ -21,7 +21,7 @@ import SwiftUI
         Binding (
             get: { wrappedValue },
             set: { wrappedValue = $0 }
-        )    
+        )
     }
     
     init(wrappedValue: Value, typeStyle: TypeStyle) {
@@ -85,7 +85,7 @@ extension StringProtocol {
         let first = String(describing: parts.first!).lowercasingFirst
         let rest = parts.dropFirst().map({String($0).lowercasingFirst})
         
-        return ([first] + rest).joined(separator: "_").lowercased()
+        return ([first] + rest).joined(separator: "_").lowercased().trimmingCharacters(in: CharacterSet(charactersIn: "_"))
     }
     
     func toKebabCase() -> String {
@@ -96,6 +96,6 @@ extension StringProtocol {
         let first = String(describing: parts.first!).lowercasingFirst
         let rest = parts.dropFirst().map({String($0).lowercasingFirst})
         
-        return ([first] + rest).joined(separator: "-").lowercased()
+        return ([first] + rest).joined(separator: "-").lowercased().trimmingCharacters(in: CharacterSet(charactersIn: "-"))
     }
 }
