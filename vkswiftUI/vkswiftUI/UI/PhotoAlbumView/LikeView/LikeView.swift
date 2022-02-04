@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct LikeView: View {
-    @State private var likeState = false
+    @Binding var userLikeState: Bool
+    @State var likeState: Bool
     @State private var degrees = 0.0
     
-    init (_ likeState: Bool) {
-        self.likeState = likeState
+    init(userLikeState: Binding<Bool>) {
+        self._userLikeState = userLikeState
+        self.likeState = userLikeState.wrappedValue
     }
     
     var body: some View {
@@ -25,6 +27,7 @@ struct LikeView: View {
             .onTapGesture {
                 withAnimation(animation()) {
                     likeState.toggle()
+                    userLikeState.toggle()
                 }
                 withAnimation(.linear(duration: 1)) {
                     self.degrees += 180

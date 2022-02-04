@@ -9,13 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct PhotoView: View {
-    let currentPhoto: Photo
-    let size = sizeType.max
-    
-    
-    init(photo: Photo) {
-        self.currentPhoto = photo
-    }
+    @Binding var currentPhoto: Photo
+    let size = sizeType.max   
     
     var body: some View {
         return GeometryReader { proxy in
@@ -29,7 +24,7 @@ struct PhotoView: View {
                     .cornerRadius(10)
                     .clipped()
                 
-                LikeView(currentPhoto.userLikes)
+                LikeView(userLikeState: $currentPhoto.userLikes)
                     .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottomTrailing)
                     .padding([.bottom, .trailing], 10)
                 

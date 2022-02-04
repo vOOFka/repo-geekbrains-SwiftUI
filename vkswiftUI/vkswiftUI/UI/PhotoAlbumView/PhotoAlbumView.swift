@@ -16,9 +16,9 @@ struct PhotoAlbumView: View {
     }
     
     var body: some View {
-        ASCollectionView(data: viewModel.photosItems)
-        { photos, _ in
-            return PhotoView(photo: photos)
+        ASCollectionView(data: $viewModel.photosItems)
+        { $photo, _ in
+            PhotoView(currentPhoto: $photo)
         }.layout {
             .grid(
                 layoutMode: .fixedNumberOfColumns(2),
