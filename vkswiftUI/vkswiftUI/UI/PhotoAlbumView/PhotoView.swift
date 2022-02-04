@@ -9,20 +9,25 @@ import SwiftUI
 import Kingfisher
 
 struct PhotoView: View {
-    let currentPhoto: Photo
-    let size = sizeType.mid
-    
-    
-    init(photo: Photo) {
-        self.currentPhoto = photo
-    }
+    @Binding var currentPhoto: Photo
+    let size = sizeType.max   
     
     var body: some View {
         return GeometryReader { proxy in
-            VStack {
+            ZStack {
                 let url = currentPhoto.sizes.first(where: { $0.type == size })!.urlPhoto
                 KFImage(URL(string: url))
                     .cancelOnDisappear(true)
+                    .resizable(resizingMode: .stretch)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .cornerRadius(10)
+                    .clipped()
+                
+                LikeView(userLikeState: $currentPhoto.userLikes)
+                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottomTrailing)
+                    .padding([.bottom, .trailing], 10)
+                
             }
         }
     }

@@ -10,6 +10,7 @@ import Kingfisher
 
 struct FriendCell: View {
     let friend: Friend
+    @State private var tapOnAvatar = false
     
     var body: some View {
         HStack {
@@ -21,6 +22,12 @@ struct FriendCell: View {
                 .modifier(CircleShadow(shadowColor: .accentColor,
                                        shadowRadius: 6,
                                        shadowOpacity: 0.8))
+                .scaleEffect(tapOnAvatar ? 1.2 : 1)
+                .onTapGesture {
+                    withAnimation(animation()) {
+                        tapOnAvatar.toggle()
+                    }
+                }
             VStack(alignment: .leading, spacing: 5.0) {
                 Text(friend.fullName)
                 Text(friend.cityName ?? "")
@@ -30,6 +37,14 @@ struct FriendCell: View {
             }.padding(.leading, 20.0)
             Spacer()
         }.frame(height: 86)
+    }
+    
+    func animation() -> Animation {
+        tapOnAvatar.toggle()
+        return Animation
+            .spring(response: 0.55, dampingFraction: 0.45, blendDuration: 0)
+            .speed(2)
+            .delay(0.075)
     }
 }
 

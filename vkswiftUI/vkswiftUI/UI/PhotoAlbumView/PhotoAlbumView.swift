@@ -16,13 +16,13 @@ struct PhotoAlbumView: View {
     }
     
     var body: some View {
-        ASCollectionView(data: viewModel.photosItems)
-        { photos, _ in
-            return PhotoView(photo: photos)
+        ASCollectionView(data: $viewModel.photosItems)
+        { $photo, _ in
+            PhotoView(currentPhoto: $photo)
         }.layout {
             .grid(
                 layoutMode: .fixedNumberOfColumns(2),
-                itemSpacing: 0,
+                itemSpacing: 8,
                 lineSpacing: 16
             )
         }.onAppear {
