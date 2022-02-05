@@ -15,20 +15,28 @@ struct PhotoAlbumView: View {
         self.viewModel = viewModel
     }
     
+    let columns = [
+        GridItem(.adaptive(minimum: 150))
+    ]
+    
     var body: some View {
-        ASCollectionView(data: $viewModel.photosItems)
-        { $photo, _ in
-            PhotoView(currentPhoto: $photo)
-        }.layout {
-            .grid(
-                layoutMode: .fixedNumberOfColumns(2),
-                itemSpacing: 8,
-                lineSpacing: 16
-            )
-        }.onAppear {
-            viewModel.fetchPhotos()
+        GeometryReader { proxy in
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach($viewModel.photosItems) { $photo in
+                        PhotoView(currentPhoto: $photo)
+                            .frame(width: proxy.size.width / 2, height: proxy.size.height / 2)
+                            .clipShape(Rectangle())
+                            .cornerRadius(10)
+                    }
+                }
+                .padding(.horizontal)
+                .onAppear{
+                    viewModel.fetchPhotos()
+                }
+            }
+            .navigationBarTitle(viewModel.currentFriend.fullName)
         }
-        .navigationBarTitle(viewModel.currentFriend.fullName)
     }
 }
 
