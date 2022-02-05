@@ -23,7 +23,15 @@ class Photos: Decodable {
     }
 }
 
-class Photo: Decodable, Identifiable {
+class Photo: Decodable, Identifiable, Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        lhs.id == rhs.id ? true : false
+    }
+    
     var id: Int = 0
     var albumId: Int = 0
     var ownerId: Int = 0
