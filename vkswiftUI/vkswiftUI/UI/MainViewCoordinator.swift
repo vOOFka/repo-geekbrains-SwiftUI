@@ -45,6 +45,9 @@ class MainCoordinator: Coordinator {
         
         let loginView = LoginVKView(isAuthorized: loginViewBinding)
         let loginViewController = UIHostingController(rootView: loginView)
+        
+        navigationController.setNavigationBarHidden(true, animated: true)
+        navigationController.modalPresentationStyle = .fullScreen
         navigationController.pushViewController(loginViewController, animated: false)
         
         loginViewModel
@@ -56,8 +59,7 @@ class MainCoordinator: Coordinator {
                 
                 if isUserLoggedIn {
                     let tabBarVC = self.createTabBarController()
-                    self.navigationController.modalPresentationStyle = .fullScreen
-                    //self.navigationController.setNavigationBarHidden(true, animated: true)
+                    tabBarVC.modalPresentationStyle = .fullScreen
                     self.navigationController.present(tabBarVC, animated: true, completion: nil)
                 } else {
                     self.navigationController.popToViewController(loginViewController, animated: true)
