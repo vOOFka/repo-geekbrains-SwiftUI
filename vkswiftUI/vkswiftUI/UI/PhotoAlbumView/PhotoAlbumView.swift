@@ -10,6 +10,7 @@ import ASCollectionView
 
 struct PhotoAlbumView: View {
     @ObservedObject var viewModel: PhotoAlbumViewModel
+    @State var photoCellHeight: CGFloat = .zero
     
     init(viewModel: PhotoAlbumViewModel) {
         self.viewModel = viewModel
@@ -25,7 +26,7 @@ struct PhotoAlbumView: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach($viewModel.photosItems) { $photo in
                         PhotoView(currentPhoto: $photo)
-                            .frame(width: proxy.size.width / 2, height: proxy.size.height / 2)
+                            .frame(height: photoCellHeight)
                             .clipShape(Rectangle())
                             .cornerRadius(10)
                     }
@@ -34,9 +35,20 @@ struct PhotoAlbumView: View {
                 .onAppear{
                     viewModel.fetchPhotos()
                 }
+                .onPreferenceChange(PhotoHeightPreferenceKey.self) { cellHeight in
+                    photoCellHeight = cellHeight
+                }
             }
             .navigationBarTitle(viewModel.currentFriend.fullName)
         }
+    }
+}
+
+struct PhotoHeightPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = .zero
+    
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
     }
 }
 

@@ -25,10 +25,9 @@ struct PhotoView: View {
                     .clipped()
                 
                 LikeView(userLikeState: $currentPhoto.userLikes)
-                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottomTrailing)
-                    .padding([.bottom, .trailing], 10)
-                
+                    .frame(width: proxy.size.width - 14, height: proxy.size.height - 10, alignment: .bottomTrailing)
             }
+            .preference(key: PhotoHeightPreferenceKey.self, value: proxy.size.width)
         }
     }
 }
