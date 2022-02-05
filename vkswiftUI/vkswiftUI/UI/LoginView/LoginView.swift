@@ -10,20 +10,20 @@ import Combine
 
 // Correct login = 1, password = 1
 
-struct LoginContainerView: View {
-   @State private var shouldShowMainView: Bool = false
-  
-   var body: some View {
-       NavigationView {
-           HStack {
-               LoginView(isUserLoggedIn: $shouldShowMainView)
-               NavigationLink(destination: MainView(), isActive: $shouldShowMainView) {
-                   EmptyView()
-               }
-           }
-       }
-   }
-}
+//struct LoginContainerView: View {
+//   @State private var shouldShowMainView: Bool = false
+//  
+//   var body: some View {
+//       NavigationView {
+//           HStack {
+//               LoginView(isUserLoggedIn: $shouldShowMainView)
+//               NavigationLink(destination: MainView(), isActive: $shouldShowMainView) {
+//                   EmptyView()
+//               }
+//           }
+//       }
+//   }
+//}
 
 struct LoginView: View {
     @CodingStyle(typeStyle: .snakeCase) private var username: String = ""

@@ -8,27 +8,12 @@
 import SwiftUI
 import WebKit
 
-struct LoginVKContainerView: View {
-    @ObservedObject var navigationDelegate: WebViewNavigationDelegate = WebViewNavigationDelegate()
-   
-    var body: some View {
-        NavigationView {
-            HStack {
-                LoginVKView(navigationDelegate: navigationDelegate)
-                .fullScreenCover(isPresented: $navigationDelegate.isAuth, onDismiss: nil, content: {
-                        MainView()                        
-                    })
-            }
-        }
-    }
-}
-
 struct LoginVKView: UIViewRepresentable {
-    var navigationDelegate: WebViewNavigationDelegate
+    @Binding var isAuthorized: Bool
     
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
-        webView.navigationDelegate = navigationDelegate
+        webView.navigationDelegate = context.coordinator
         return webView
     }
     
@@ -54,10 +39,18 @@ struct LoginVKView: UIViewRepresentable {
         
         return components.url.map { URLRequest(url: $0) }
     }
+    
+    func makeCoordinator() -> WebViewNavigationDelegate {
+        return WebViewNavigationDelegate(vkLoginWebView: self)
+    }
 }
 
 class WebViewNavigationDelegate: NSObject, WKNavigationDelegate, ObservableObject {
-    @Published var isAuth: Bool = false
+    let vkLoginWebView: LoginVKView
+    
+    init(vkLoginWebView: LoginVKView) {
+        self.vkLoginWebView = vkLoginWebView
+    }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         guard let url = navigationResponse.response.url,
@@ -88,16 +81,8 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate, ObservableObjec
         
         UserDefaults.standard.set(token, forKey: "vkToken")
         UserDefaults.standard.set(userIdString, forKey: "userIdString")
-        NotificationCenter.default.post(name: NSNotification.Name("vkTokenSaved"), object: self)
-        NotificationCenter.default.post(name: NSNotification.Name("userIdString"), object: self)
-        isAuth = true
+        vkLoginWebView.isAuthorized = true
         
         decisionHandler(.cancel)
     }
 }
-
-//struct LoginVKView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LoginVKView()
-//    }
-//}
