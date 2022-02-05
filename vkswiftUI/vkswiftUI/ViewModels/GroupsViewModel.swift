@@ -9,8 +9,6 @@ import SwiftUI
 import RealmSwift
 
 class GroupsViewModel: ObservableObject {
-    
- //   @Published var userGroups = [UserGroup]()
     private let networkService: NetworkService
     let realmService: RealmService
     

@@ -11,6 +11,8 @@
 		F409C8FC279DF11300DA5F20 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = F409C8FB279DF11300DA5F20 /* ASCollectionView */; };
 		F409C8FF279DF21B00DA5F20 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = F409C8FE279DF21B00DA5F20 /* Realm */; };
 		F409C901279DF21B00DA5F20 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F409C900279DF21B00DA5F20 /* RealmSwift */; };
+		F4103B9327ADA7DF00D3E135 /* MainViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4103B9227ADA7DF00D3E135 /* MainViewCoordinator.swift */; };
+		F4103B9527AE7F0700D3E135 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4103B9427AE7F0700D3E135 /* LoginViewModel.swift */; };
 		F41ED84A279F39B9003B0CFC /* PhotoAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41ED849279F39B9003B0CFC /* PhotoAlbumViewModel.swift */; };
 		F41ED84C279F3D4F003B0CFC /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41ED84B279F3D4E003B0CFC /* PhotoView.swift */; };
 		F41ED84E279F4487003B0CFC /* GroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41ED84D279F4487003B0CFC /* GroupsViewModel.swift */; };
@@ -47,6 +49,9 @@
 
 /* Begin PBXFileReference section */
 		F400BB122794946C003134A2 /* HiddenNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenNavigationBar.swift; sourceTree = "<group>"; };
+		F4103B9227ADA7DF00D3E135 /* MainViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCoordinator.swift; sourceTree = "<group>"; };
+		F4103B9427AE7F0700D3E135 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F4103B9627AE860400D3E135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F41ED849279F39B9003B0CFC /* PhotoAlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewModel.swift; sourceTree = "<group>"; };
 		F41ED84B279F3D4E003B0CFC /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		F41ED84D279F4487003B0CFC /* GroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewModel.swift; sourceTree = "<group>"; };
@@ -127,6 +132,7 @@
 		F43067A3278AEBCF009116C8 /* vkswiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				F4103B9627AE860400D3E135 /* Info.plist */,
 				F4F16B44279094E200737949 /* UI */,
 				F4D48DF0279DFA6E0050B9E1 /* ViewModels */,
 				F4F16B43279094D800737949 /* Models */,
@@ -166,6 +172,7 @@
 				F4D48DF1279DFA9A0050B9E1 /* FriendsViewModel.swift */,
 				F41ED849279F39B9003B0CFC /* PhotoAlbumViewModel.swift */,
 				F41ED84D279F4487003B0CFC /* GroupsViewModel.swift */,
+				F4103B9427AE7F0700D3E135 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -194,6 +201,7 @@
 				F4FEFE0627921BDA00B4E72B /* FriendsView */,
 				F4FEFE0927932D2A00B4E72B /* GroupsView */,
 				F4FEFE1A2793576C00B4E72B /* Newsfeed */,
+				F4103B9227ADA7DF00D3E135 /* MainViewCoordinator.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -378,11 +386,13 @@
 				F43067A7278AEBCF009116C8 /* LoginView.swift in Sources */,
 				F41ED84E279F4487003B0CFC /* GroupsViewModel.swift in Sources */,
 				F4D48DF2279DFA9A0050B9E1 /* FriendsViewModel.swift in Sources */,
+				F4103B9527AE7F0700D3E135 /* LoginViewModel.swift in Sources */,
 				F4F525A427A6BA280023A95A /* LikeShape.swift in Sources */,
 				F44E94BB279E04070099C121 /* NetworkService.swift in Sources */,
 				F4F16B4A2790C2C400737949 /* FriendCell.swift in Sources */,
 				F43067A5278AEBCF009116C8 /* vkswiftUIApp.swift in Sources */,
 				F41ED853279F4EF4003B0CFC /* RealmGroup.swift in Sources */,
+				F4103B9327ADA7DF00D3E135 /* MainViewCoordinator.swift in Sources */,
 				F4FEFE0E27932EDF00B4E72B /* UserGroup.swift in Sources */,
 				F4FEFE1327933F6600B4E72B /* UserGroupNameText.swift in Sources */,
 				F4F16B462790B46200737949 /* Friend.swift in Sources */,
@@ -522,6 +532,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"vkswiftUI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = vkswiftUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -550,6 +561,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"vkswiftUI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = vkswiftUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
