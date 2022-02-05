@@ -8,29 +8,11 @@
 import SwiftUI
 import UIKit
 
-//struct MainView: UIViewControllerRepresentable {
+//struct MainView: View {
+//    let networkService = NetworkServiceImplimentation()
+//    let realmService = RealmServiceImplimentation()
 //
-//    func makeUIViewController(context: Context) -> UITabBarController {
-//        let tableCtrl = UITabBarController()
-//        return tableCtrl
-//    }
-//
-////    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-////
-////    }
-//
-//    func makeCoordinator() -> () {
-//        <#code#>
-//    }
-//
-//}
-
-struct MainView: View {
-    let networkService = NetworkServiceImplimentation()
-    let realmService = RealmServiceImplimentation()
-
-    var body: some View {
-        Text("MainView")
+//    var body: some View {
 //        TabView {
 //            FriendsView(viewModel: FriendsViewModel(networkService: networkService))
 //                .tabItem {
@@ -49,8 +31,8 @@ struct MainView: View {
 //        .navigationBarTitle("", displayMode: .inline)
 //        .navigationBarHidden(true)
 //        .navigationBarBackButtonHidden(true)
-    }
-}
+//    }
+//}
 
 //struct MainView_Previews: PreviewProvider {
 //    static var previews: some View {

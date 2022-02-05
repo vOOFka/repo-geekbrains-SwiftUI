@@ -10,7 +10,6 @@ import Combine
 import SwiftUI
 
 protocol Coordinator: AnyObject {
-    //var tabBarController: UITabBarController { get }
     var navigationController: UINavigationController { get }
     var childCoordinators: [Coordinator] { get }
     var onCompleted: (() -> Void)? { get set }
@@ -26,6 +25,9 @@ class MainCoordinator: Coordinator {
     var onCompleted: (() -> Void)?
     
     let loginViewModel: LoginViewModel = LoginViewModel()
+    
+    let networkService = NetworkServiceImplimentation()
+    let realmService = RealmServiceImplimentation()
     
     public init(navigationController: UINavigationController, onCompleted: (() -> Void)? = nil) {
         self.navigationController = navigationController
@@ -53,9 +55,10 @@ class MainCoordinator: Coordinator {
                 guard let self = self else { return }
                 
                 if isUserLoggedIn {
-                    print("**************************")
-                    let friendsController = self.createFriendsController()
-                    self.navigationController.pushViewController(friendsController, animated: true)
+                    let tabBarVC = self.createTabBarController()
+                    self.navigationController.modalPresentationStyle = .fullScreen
+                    //self.navigationController.setNavigationBarHidden(true, animated: true)
+                    self.navigationController.present(tabBarVC, animated: true, completion: nil)
                 } else {
                     self.navigationController.popToViewController(loginViewController, animated: true)
                 }
@@ -63,61 +66,40 @@ class MainCoordinator: Coordinator {
             .store(in: &cancellables)
     }
     
+    private func createTabBarController() -> UIViewController {
+        let tabBarVC = UITabBarController()
+        let vc1 = UINavigationController(rootViewController: createFriendsController())
+        let vc2 = UINavigationController(rootViewController: createGroupsController())
+        let vc3 = UINavigationController(rootViewController: createNewsfeedController())
+        
+        vc1.title = "Friends"
+        vc2.title = "Groups"
+        vc3.title = "Newsfeed"
+        
+        tabBarVC.setViewControllers([vc1, vc2, vc3], animated: true)
+        
+        guard let items = tabBarVC.tabBar.items else { return tabBarVC }
+        let imageNames = ["person.2.fill","person.3.fill","applelogo"]
+        
+        for x in 0..<imageNames.count {
+            items[x].image = UIImage(systemName: imageNames[x])
+        }
+        
+        return tabBarVC
+    }
+    
     private func createFriendsController() -> UIViewController {
-        let ns = NetworkServiceImplimentation()
-        let viewModel = FriendsViewModel(networkService: ns)
+        let viewModel = FriendsViewModel(networkService: networkService)
         let friendsView = FriendsView(viewModel: viewModel)
         return UIHostingController(rootView: friendsView)
     }
+    private func createGroupsController() -> UIViewController {
+        let viewModel = GroupsViewModel(networkService: networkService, realmService: realmService)
+        let groupsView = GroupsView(viewModel: viewModel)
+        return UIHostingController(rootView: groupsView)
+    }
+    private func createNewsfeedController() -> UIViewController {
+        let newsfeedView = NewsfeedView()
+        return UIHostingController(rootView: newsfeedView)
+    }
 }
-
-//class MainCoordinator: Coordinator {
-//
-//    let tabBarController: UITabBarController
-////    let navigationController: UINavigationController
-//    private let networkService = NetworkServiceImplimentation()
-//    private let realmService = RealmServiceImplimentation()
-//
-//    private(set) var childCoordinators: [Coordinator] = []
-//    var onCompleted: (() -> Void)?
-//
-//    private lazy var friendsViewModel = FriendsViewModel(networkService: networkService)
-//    private lazy var groupsViewModel = GroupsViewModel(networkService: networkService, realmService: realmService)
-//
-//    //For disable and cleaning
-//    private var cancellables: Set<AnyCancellable> = []
-//
-//    init(tabBarController: UITabBarController) {
-////        let friendsView = FriendsView(viewModel: friendsViewModel)
-////        let friendsViewController = UIHostingController(rootView: friendsView)
-//
-//        self.tabBarController = UITabBarController()
-////        self.navigationController = UINavigationController(rootViewController: friendsViewController)
-//    }
-//
-//    public func start() {
-//        let mainTabVC = UIHostingController(rootView: MainView())
-//
-//
-//        let friendsView = UIHostingController(rootView: FriendsView(viewModel: friendsViewModel))
-//        let vc1 = UINavigationController(rootViewController: friendsView)
-//
-//        tabBarController.setViewControllers([vc1], animated: true)
-//
-////        friendsViewModel { [weak self] _ in
-////            guard let self = self else { return }
-////            if !isUserLoggedIn {
-////                self.navigationController.popToRootViewController(animated: true)
-////            } else {
-////                let friendsView = self.FriendsView(viewModel: <#T##FriendsViewModel#>)
-////                self.navigationController.pushViewController(friendsView, animated: true)
-////            }
-////        }.store(in: &cancellables)
-//    }
-//
-////    private func createCitiesController() -> UIViewController {
-////        let context = coreDataService.context
-////        let citiesView = CitiesView().environment(\.managedObjectContext, context)
-////        return UIHostingController(rootView: citiesView)
-////    }
-//}
