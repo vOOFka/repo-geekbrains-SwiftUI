@@ -10,7 +10,9 @@ import Kingfisher
 
 struct PhotoView: View {
     @Binding var currentPhoto: Photo
-    let size = sizeType.max   
+    let size = sizeType.max
+    let index: Int?
+    @Binding var selection: Int?
     
     var body: some View {
         return GeometryReader { proxy in
@@ -24,10 +26,17 @@ struct PhotoView: View {
                     .cornerRadius(10)
                     .clipped()
                 
-                LikeView(userLikeState: $currentPhoto.userLikes)
-                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .bottomTrailing)
-                    .padding([.bottom, .trailing], 10)
-                
+                LikeView(currentPhoto: $currentPhoto)
+                    .frame(width: proxy.size.width - 14, height: proxy.size.height - 10, alignment: .bottomTrailing)
+            }
+            .preference(key: PhotoHeightPreferenceKey.self, value: proxy.size.width)
+            .anchorPreference(key: SelectionPreferenceKey.self, value: .bounds) {
+                index == self.selection ? $0 : nil
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    self.selection = index
+                }
             }
         }
     }

@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct LikeView: View {
-    @Binding var userLikeState: Bool
+    @Binding var currentPhoto: Photo
     @State var likeState: Bool
     @State private var degrees = 0.0
     
-    init(userLikeState: Binding<Bool>) {
-        self._userLikeState = userLikeState
-        self.likeState = userLikeState.wrappedValue
+    let networkService = NetworkServiceImplimentation()
+    
+    init(currentPhoto: Binding<Photo>) {
+        self._currentPhoto = currentPhoto
+        self.likeState = currentPhoto.userLikes.wrappedValue
     }
     
     var body: some View {
@@ -27,12 +29,17 @@ struct LikeView: View {
             .onTapGesture {
                 withAnimation(animation()) {
                     likeState.toggle()
-                    userLikeState.toggle()
+                    currentPhoto.userLikes.toggle()
                 }
                 withAnimation(.linear(duration: 1)) {
                     self.degrees += 180
                 }
+                postLikeToVk(currentPhoto: currentPhoto)
             }
+    }
+    
+    func postLikeToVk(currentPhoto: Photo) {
+        networkService.photoLikesAdd(ownerId: String(currentPhoto.ownerId), itemId: String(currentPhoto.id)) { print($0 ?? "*******") }
     }
     
     func animation() -> Animation {
