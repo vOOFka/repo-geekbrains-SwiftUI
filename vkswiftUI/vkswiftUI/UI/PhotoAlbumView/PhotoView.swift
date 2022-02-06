@@ -26,7 +26,7 @@ struct PhotoView: View {
                     .cornerRadius(10)
                     .clipped()
                 
-                LikeView(userLikeState: $currentPhoto.userLikes)
+                LikeView(currentPhoto: $currentPhoto)
                     .frame(width: proxy.size.width - 14, height: proxy.size.height - 10, alignment: .bottomTrailing)
             }
             .preference(key: PhotoHeightPreferenceKey.self, value: proxy.size.width)

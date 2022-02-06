@@ -43,6 +43,24 @@ class NetworkServiceImplimentation: NetworkService {
             return nil
         }
     }
+    func photoLikesAdd(ownerId: String, itemId: String, completion: @escaping (Bool?) -> Void) {
+        let path = "likes.add"
+        let parameters: Parameters = ["user_id" : Constans.userIdString,
+                                      "access_token" : Constans.accessToken,
+                                      "v" : Constans.versionAPI,
+                                      "owner_id" : ownerId,
+                                      "item_id" : itemId,
+                                      "type" : "photo"]
+        Constans.session.request(Constans.host + path, method: .post, parameters: parameters).response { response in
+            switch response.result {
+            case .failure(let error):
+                print(error)
+                completion(nil)
+            case .success:
+                completion(true)
+            }
+        }
+    }
     
 //    func getNewsfeed(completion: @escaping (NewsFeed?) -> Void) {
 //        let path = "newsfeed.get"
